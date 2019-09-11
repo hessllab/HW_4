@@ -4,7 +4,7 @@
 wget -r -e robots=off -A 'wv???.rwl' -np -nd https://www1.ncdc.noaa.gov/pub/data/paleo/treering/measurements/northamerica/usa/
 ```
 
-This command does quite a lot. It recursively downloads the files from the link provided, tells the source that we are not a robot, and specifies that the files we want include only west virginia locations that are followed by three characters and an .rwl extension. It also specifies that we wish to look at only the files within this directory (though I wish we could include wv013 and wv014) and that we want only the files to be copied - not the directory structure.
+This command does quite a lot. It recursively downloads the files from internet using the link provided, tells the source that we are not a robot, and specifies that the files we want include only west virginia locations that are followed by three characters and an .rwl extension. It also specifies that we wish to look at only the files within this directory (though I wish we could include wv013 and wv014) and that we want only the files to be copied - not the directory structure.
 
 ```
 for sitename in wv???.rwl
