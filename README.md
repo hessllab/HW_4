@@ -1,30 +1,17 @@
 ### Shell Loop Exercise
-Problem: Dr. Hessl asked Cynthia to download all the tree ring data for the US from the International Tree Ring Data Bank (ITRDB) and provide a summary of the data available to compare to Cynthia's dissertation data.  Cynthia is smart and has decided to solve the problem for WV first.
 
-ITRDB files have a lot of metadata in the headers, but not all files have them and they are not always formatted the same way.  To help her get started summarizing the available data, Cynthia wants to know which files have headers and which do not.
-
-Data: Accessible as text files from NOAA Maintained International Tree Ring Data Bank
-https://www1.ncdc.noaa.gov/pub/data/paleo/treering/measurements/northamerica/usa/
-
-
-#### Objective: Write a set of commands for the bash shell that successfully:
-1)	Downloads all the _.rwl_ files for WV from  the NOAA website.  
-2)  Creates a file called _sitename.txt_ that is a list of the site names each followed by the first line of each file, which is often but not always a header with metadata, such as for `wv004`:
 ```
-wv004
-NERI   1 New River Gorge                                     PIVI  
+wget -r -e robots=off -A 'wv???.rwl' -np -nd https://www1.ncdc.noaa.gov/pub/data/paleo/treering/measurements/northamerica/usa/
 ```
 
-#### Follow the following principles:
-1)	Be sure to make the paths absolute so that I can reproduce the structure on my machine simply by running your code.   
-2)	Code should be saved as part of a _.md_ file  
-3)	Code blocks include only commands
-4)  Comments are made around the text block in well-formatted markdown.      
-5)	The fewer lines of code, the better the answer. Edit your answer until only what is required is present. 8 lines or less is possible.
+This command does quite a lot. It recursively downloads the files from the link provided, tells the source that we are not a robot, and specifies that the files we want include only west virginia locations that are followed by three characters and an .rwl extension. It also specifies that we wish to look at only the files within this directory (though I wish we could include wv013 and wv014) and that we want only the files to be copied - not the directory structure.
 
+```
+for sitename in wv???.rwl
+do
+    ls $sitename | cut -c 1-5 >> sitename.txt
+    head -n 1 $sitename >> sitename.txt
+done
+```
 
-#### Hints/Tips:
-Use `wget` combined with a wildcard to get all the `.rwl` files for a state
-Loop through those files to extract the header using `cut` and `head`
-
-### Submit using the fork-clone-branch-commit-pull_request strategy.
+This loop indicates that we want to run the 12 locations retrieved from the previous comand, referred to as 'sitename', that are found within the rwl files containing wv followed by three characters. Each of the locations are displayed, piped, and cut so that the extensions are removed and only pertinant identifiers remain. The results are then displayed in a .txt file we have named 'sitename'. The next command in the loop selects only the first line of info for each wv location and displays the results in the previously mentioned sitename.txt file.
