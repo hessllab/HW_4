@@ -1,7 +1,4 @@
----
-title: "HW4"
-output: html_document
----
+
 Zack Grzywacz
 
 To download all of the WV files from the NOAA website, we will use a wget that excludes all the "-noaa" files using three ? wildcards.
