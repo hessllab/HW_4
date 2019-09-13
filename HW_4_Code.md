@@ -5,8 +5,7 @@ so that it could be seen which files do and do not contain headers. The desired 
 
 ## Code to download the data from the NOAA website
 ```
-wget -r -e robots=off -A 'wv'???.rwl -np -nd https://www1.ncdc.noaa.
-gov/pub/data/paleo/treering/measurements/northamerica/usa/
+wget -r -e robots=off -A 'wv'???.rwl -np -nd https://www1.ncdc.noaa.gov/pub/data/paleo/treering/measurements/northamerica/usa/
 ```
 The code above uses wget which is a tool to download files from the internet. In the line of code it uses the robot exclusion
 option which helps wget acess the desired files easier. Files from WV were the desired target so we utilized -A 'wv' to pull only WV files, 
