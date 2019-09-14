@@ -9,7 +9,7 @@ This command does quite a lot. It recursively downloads the files from internet 
 ```
 for sitename in wv???.rwl
 do
-    ls $sitename | cut -c 1-5 >> sitename.txt
+    ls $sitename | cut -c 1-5 >> sitename.txt #works, cut -d '.' adds flexibility - what if site name is more chars?
     head -n 1 $sitename >> sitename.txt
 done
 ```
