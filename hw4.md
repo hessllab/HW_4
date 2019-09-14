@@ -1,11 +1,11 @@
 # Homework 4
+The purpose of this script is to...
 
 ## Part I: Downloading the data from the Internet
 The following code downloads the files we need by using the wildcards * and ??? (since we only want file that have 3 characters after "wv"). 
 
 ```{Bash} 
-cd Documents/GEOG693 #Go to the directory that you use in this course. 
-mkdir -p HW4 #make a directory to save the data of the homework
+mkdir -p HW4 #make a directory to save the data of the homework #this makes it work on any machine
 wget -r -e robots=off -A 'wv???.rwl' -np -nd -q https://www1.ncdc.noaa.gov/pub/data/paleo/treering/measurements/northamerica/usa/ #code to retrieve the data
 ```
 
@@ -16,7 +16,7 @@ The following loop finds the file name, deletes the file extension and then writ
 ```{Bash}
 for filename in *.rwl
 do
-echo $filename | cut -d . -f 1 >> sitename.txt
-head -1 $filename >> sitename.txt
+  echo $filename | cut -d . -f 1 >> sitename.txt
+  head -1 $filename >> sitename.txt
 done
 ```
