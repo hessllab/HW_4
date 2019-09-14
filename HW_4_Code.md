@@ -1,19 +1,19 @@
 #### Make directory and retrieve data
 
 ```bash
-mkdir ../data_shell/data/NOAA_WV_Tree_Ring_Data
-cd ../data_shell/data/NOAA_WV_Tree_Ring_Data
-wget -r -e robots=off -A 'wv???.txt' -np -nd https://www1.ncdc.noaa.gov/pub/data/paleo/treering/measurements/northamerica/usa/
+mkdir NOAA_WV_Tree_Ring_Data #this change allows the script to work on any machine.
+cd NOAA_WV_Tree_Ring_Data
+wget -r -e robots=off -A 'wv???.rwl' -np -nd https://www1.ncdc.noaa.gov/pub/data/paleo/treering/measurements/northamerica/usa/
 ```
 
-The above code makes a new folder for the data (NOAA_WV_Tree_Ring_Data). Then, navigates to the to the new directory so that data downloaded with wget will go there. With the wget command, a series of flags are used to avoid catastrophic internet download and user annoyance, including `-np` and `-nd`. The `-A` flag allows a filter to what files we download. In order to not dowload the NOAA file for each data set, wildcards are used to obtain only the intended files. 
+The above code makes a new folder for the data (NOAA_WV_Tree_Ring_Data). Then, navigates to the to the new directory so that data downloaded with wget will go there. With the wget command, a series of flags are used to avoid catastrophic internet download and user annoyance, including `-np` and `-nd`. The `-A` flag allows a filter to only .rwl files from wv. In order to not download the NOAA file for each data set, ? are used to obtain only the intended files. #how?
 
 ___________________________________________
 
 #### Loop
 
 ```bash
-for sitename in wv???.rwl
+for sitename in wv???.rwl 
 do
   echo $sitename | cut -c 1-5 >> sitename.txt
   head -n 1 $sitename >> sitename.txt
